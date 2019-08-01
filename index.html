@@ -80,64 +80,61 @@
                     </tr>\
                     <tr>\
                         <th scope="row">Temp Closed</th>\
-                        <td>' + (feature.properties['Temp Closed'] !== null ? Autolinker.link(String(feature.properties['Temp Closed'])) : '') + '</td>\
+                        <td>' + (feature.properties['Temp Closed'] !== null ?
+    Autolinker.link(String(feature.properties['Temp Closed'])) : 'No') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">TYPE</th>\
+                        <th scope="row">Type</th>\
                         <td>' + (feature.properties['TYPE'] !== null ? Autolinker.link(String(feature.properties['TYPE'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">CLASSIFICATION</th>\
+                        <th scope="row">Classification</th>\
                         <td>' + (feature.properties['CLASSIFICATION'] !== null ? Autolinker.link(String(feature.properties['CLASSIFICATION'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">AREA</th>\
+                        <th scope="row">Area</th>\
                         <td>' + (feature.properties['AREA'] !== null ? Autolinker.link(String(feature.properties['AREA'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">REGION</th>\
+                        <th scope="row">Region</th>\
                         <td>' + (feature.properties['REGION'] !== null ? Autolinker.link(String(feature.properties['REGION'])) : '') + '</td>\
                     </tr>\
+                    <!--\
                     <tr>\
                         <td colspan="2">' + (feature.properties['PROV'] !== null ? Autolinker.link(String(feature.properties['PROV'])) : '') + '</td>\
                     </tr>\
+                    -->\
+                    <!--\
                     <tr>\
                         <td colspan="2">' + (feature.properties['DISTRICT MUNICIPALITY'] !== null ? Autolinker.link(String(feature.properties['DISTRICT MUNICIPALITY'])) : '') + '</td>\
                     </tr>\
+                    -->\
                     <tr>\
-                        <th scope="row">LOCAL MUNISIPALITY</th>\
+                        <th scope="row">Local Municipality</th>\
                         <td>' + (feature.properties['LOCAL MUNISIPALITY'] !== null ? Autolinker.link(String(feature.properties['LOCAL MUNISIPALITY'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">STREET_ADDRESS</th>\
+                        <th scope="row">Street Address</th>\
                         <td>' + (feature.properties['STREET_ADDRESS'] !== null ? Autolinker.link(String(feature.properties['STREET_ADDRESS'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">SUBURB_ARE</th>\
-                        <td>' + (feature.properties['SUBURB_ARE'] !== null ? Autolinker.link(String(feature.properties['SUBURB_ARE'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">TOWN_CITY</th>\
+                        <th scope="row">Town/City</th>\
                         <td>' + (feature.properties['TOWN_CITY'] !== null ? Autolinker.link(String(feature.properties['TOWN_CITY'])) : '') + '</td>\
                     </tr>\
+                    <!--\
                     <tr>\
                         <td colspan="2">' + (feature.properties['POSTAL CODE BOXES'] !== null ? Autolinker.link(String(feature.properties['POSTAL CODE BOXES'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['POSTAL CODE STREET'] !== null ? Autolinker.link(String(feature.properties['POSTAL CODE STREET'])) : '') + '</td>\
                     </tr>\
+                    -->\
                     <tr>\
-                        <th scope="row">URBAN/RURAL</th>\
+                        <th scope="row">Urban/Rural</th>\
                         <td>' + (feature.properties['URBAN/RURAL'] !== null ? Autolinker.link(String(feature.properties['URBAN/RURAL'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? Autolinker.link(String(feature.properties['Latitude'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['LONGITUDE'] !== null ? Autolinker.link(String(feature.properties['LONGITUDE'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">PREDOMINANT LANGUAGE SPOKEN IN THE AREA</th>\
+                        <th scope="row">Language</th>\
                         <td>' + (feature.properties['PREDOMINANT LANGUAGE SPOKEN IN THE AREA'] !== null ? Autolinker.link(String(feature.properties['PREDOMINANT LANGUAGE SPOKEN IN THE AREA'])) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -145,48 +142,37 @@
                         <td>' + (feature.properties['SASSA Branch'] !== null ? Autolinker.link(String(feature.properties['SASSA Branch'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">BRANCH CONTACT NUMBER</th>\
+                        <th scope="row">Contact Number</th>\
                         <td>' + (feature.properties['BRANCH CONTACT NUMBER'] !== null ? Autolinker.link(String(feature.properties['BRANCH CONTACT NUMBER'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Opening Hours: MON- FRI</th>\
-                        <td>' + (feature.properties['MONDAY - FRIDAY'] !== null ? Autolinker.link(String(feature.properties['MONDAY - FRIDAY'])) : '') + '</td>\
+                        <th scope="row" colspan="2">Opening Hours</th>\
+                        <td></td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Closing Hours: MON - FRI</th>\
-                        <td>' + (feature.properties['field_22'] !== null ? Autolinker.link(String(feature.properties['field_22'])) : '') + '</td>\
+                        <th scope="row">MON - FRI</th>\
+                        <td>' + (feature.properties['MONDAY - FRIDAY'] !== null ? Autolinker.link(String(feature.properties['MONDAY - FRIDAY'])) : '') + '\
+                            - ' + (feature.properties['field_22'] !== null ? Autolinker.link(String(feature.properties['field_22'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Opening Hours: WED </th>\
-                        <td>' + (feature.properties['WEDNESDAY'] !== null ? Autolinker.link(String(feature.properties['WEDNESDAY'])) : '') + '</td>\
+                        <th scope="row">WED </th>\
+                        <td>' + (feature.properties['WEDNESDAY'] !== null ? Autolinker.link(String(feature.properties['WEDNESDAY'])) : '') + '\
+                         - ' + (feature.properties['field_24'] !== null ? Autolinker.link(String(feature.properties['field_24'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Closing Hours: WED</th>\
-                        <td>' + (feature.properties['field_24'] !== null ? Autolinker.link(String(feature.properties['field_24'])) : '') + '</td>\
+                        <th scope="row">SAT</th>\
+                        <td>' + (feature.properties['SATURDAYS'] !== null ? Autolinker.link(String(feature.properties['SATURDAYS'])) : '') + '\
+                         - ' + (feature.properties['SATURDAYS'] !== null ? Autolinker.link(String(feature.properties['SATURDAYS'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Opening Hours: SAT</th>\
-                        <td>' + (feature.properties['SATURDAYS'] !== null ? Autolinker.link(String(feature.properties['SATURDAYS'])) : '') + '</td>\
+                        <th scope="row">SUN</th>\
+                        <td>' + (feature.properties['SUNDAYS'] !== null ? Autolinker.link(String(feature.properties['SUNDAYS'])) : '') + '\
+                         - ' + (feature.properties['SUNDAYS'] !== null ? Autolinker.link(String(feature.properties['SUNDAYS'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Closing Hours: SAT</th>\
-                        <td>' + (feature.properties['field_26'] !== null ? Autolinker.link(String(feature.properties['field_26'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Opening Hours: SUN</th>\
-                        <td>' + (feature.properties['SUNDAYS'] !== null ? Autolinker.link(String(feature.properties['SUNDAYS'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Closing Hours: SAT</th>\
-                        <td>' + (feature.properties['field_28'] !== null ? Autolinker.link(String(feature.properties['field_28'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Opening Hours: HOLIDAYS</th>\
-                        <td>' + (feature.properties['HOLIDAYS'] !== null ? Autolinker.link(String(feature.properties['HOLIDAYS'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Closing Hours: HOLIDAYS</th>\
-                        <td>' + (feature.properties['field_30'] !== null ? Autolinker.link(String(feature.properties['field_30'])) : '') + '</td>\
+                        <th scope="row">HOLIDAYS</th>\
+                        <td>' + (feature.properties['HOLIDAYS'] !== null ? Autolinker.link(String(feature.properties['HOLIDAYS'])) : '') + '\
+                         - ' + (feature.properties['HOLIDAYS'] !== null ? Autolinker.link(String(feature.properties['HOLIDAYS'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
