@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/informationforBlacksash_1.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-34.889419725,14.445719596650944],[-22.044109275000004,34.780088403349055]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var overlay_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0
+        });
+        overlay_OSMStandard_0.addTo(map);
+        map.addLayer(overlay_OSMStandard_0);
+        function pop_informationforBlacksash_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Temp Closed</th>\
+                        <td>' + (feature.properties['Temp Closed'] !== null ? Autolinker.link(String(feature.properties['Temp Closed'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">TYPE</th>\
+                        <td>' + (feature.properties['TYPE'] !== null ? Autolinker.link(String(feature.properties['TYPE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CLASSIFICATION</th>\
+                        <td>' + (feature.properties['CLASSIFICATION'] !== null ? Autolinker.link(String(feature.properties['CLASSIFICATION'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">AREA</th>\
+                        <td>' + (feature.properties['AREA'] !== null ? Autolinker.link(String(feature.properties['AREA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">REGION</th>\
+                        <td>' + (feature.properties['REGION'] !== null ? Autolinker.link(String(feature.properties['REGION'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROV'] !== null ? Autolinker.link(String(feature.properties['PROV'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT MUNICIPALITY'] !== null ? Autolinker.link(String(feature.properties['DISTRICT MUNICIPALITY'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">LOCAL MUNISIPALITY</th>\
+                        <td>' + (feature.properties['LOCAL MUNISIPALITY'] !== null ? Autolinker.link(String(feature.properties['LOCAL MUNISIPALITY'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">STREET_ADDRESS</th>\
+                        <td>' + (feature.properties['STREET_ADDRESS'] !== null ? Autolinker.link(String(feature.properties['STREET_ADDRESS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SUBURB_ARE</th>\
+                        <td>' + (feature.properties['SUBURB_ARE'] !== null ? Autolinker.link(String(feature.properties['SUBURB_ARE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">TOWN_CITY</th>\
+                        <td>' + (feature.properties['TOWN_CITY'] !== null ? Autolinker.link(String(feature.properties['TOWN_CITY'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POSTAL CODE BOXES'] !== null ? Autolinker.link(String(feature.properties['POSTAL CODE BOXES'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POSTAL CODE STREET'] !== null ? Autolinker.link(String(feature.properties['POSTAL CODE STREET'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">URBAN/RURAL</th>\
+                        <td>' + (feature.properties['URBAN/RURAL'] !== null ? Autolinker.link(String(feature.properties['URBAN/RURAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? Autolinker.link(String(feature.properties['Latitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONGITUDE'] !== null ? Autolinker.link(String(feature.properties['LONGITUDE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">PREDOMINANT LANGUAGE SPOKEN IN THE AREA</th>\
+                        <td>' + (feature.properties['PREDOMINANT LANGUAGE SPOKEN IN THE AREA'] !== null ? Autolinker.link(String(feature.properties['PREDOMINANT LANGUAGE SPOKEN IN THE AREA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SASSA Branch</th>\
+                        <td>' + (feature.properties['SASSA Branch'] !== null ? Autolinker.link(String(feature.properties['SASSA Branch'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">BRANCH CONTACT NUMBER</th>\
+                        <td>' + (feature.properties['BRANCH CONTACT NUMBER'] !== null ? Autolinker.link(String(feature.properties['BRANCH CONTACT NUMBER'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">MONDAY - FRIDAY</th>\
+                        <td>' + (feature.properties['MONDAY - FRIDAY'] !== null ? Autolinker.link(String(feature.properties['MONDAY - FRIDAY'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">field_22</th>\
+                        <td>' + (feature.properties['field_22'] !== null ? Autolinker.link(String(feature.properties['field_22'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">WEDNESDAY</th>\
+                        <td>' + (feature.properties['WEDNESDAY'] !== null ? Autolinker.link(String(feature.properties['WEDNESDAY'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">field_24</th>\
+                        <td>' + (feature.properties['field_24'] !== null ? Autolinker.link(String(feature.properties['field_24'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SATURDAYS</th>\
+                        <td>' + (feature.properties['SATURDAYS'] !== null ? Autolinker.link(String(feature.properties['SATURDAYS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">field_26</th>\
+                        <td>' + (feature.properties['field_26'] !== null ? Autolinker.link(String(feature.properties['field_26'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SUNDAYS</th>\
+                        <td>' + (feature.properties['SUNDAYS'] !== null ? Autolinker.link(String(feature.properties['SUNDAYS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">field_28</th>\
+                        <td>' + (feature.properties['field_28'] !== null ? Autolinker.link(String(feature.properties['field_28'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HOLIDAYS</th>\
+                        <td>' + (feature.properties['HOLIDAYS'] !== null ? Autolinker.link(String(feature.properties['HOLIDAYS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">field_30</th>\
+                        <td>' + (feature.properties['field_30'] !== null ? Autolinker.link(String(feature.properties['field_30'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_informationforBlacksash_1_0() {
+            return {
+                pane: 'pane_informationforBlacksash_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,82,45,1.0)',
+            }
+        }
+        map.createPane('pane_informationforBlacksash_1');
+        map.getPane('pane_informationforBlacksash_1').style.zIndex = 401;
+        map.getPane('pane_informationforBlacksash_1').style['mix-blend-mode'] = 'normal';
+        var layer_informationforBlacksash_1 = new L.geoJson(json_informationforBlacksash_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_informationforBlacksash_1',
+            onEachFeature: pop_informationforBlacksash_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_informationforBlacksash_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_informationforBlacksash_1);
+        map.addLayer(layer_informationforBlacksash_1);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        setBounds();
+        map.addControl(new L.Control.Search({
+            layer: layer_informationforBlacksash_1,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Name'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        </script>
+    </body>
+</html>
